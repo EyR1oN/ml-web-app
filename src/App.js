@@ -4,6 +4,7 @@ import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Upload } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
+import MenuComponent from "./components/Menu";
 
 
 
@@ -46,48 +47,9 @@ const App = () => {
   };
 
   return (
-    <>
-       <Navbar bg="light" expand="lg">
-        <Container>
-          <Navbar.Brand>My Website</Navbar.Brand>
-        </Container>
-      </Navbar>
-
-      <Container className="d-flex align-items-center justify-content-center vh-100">
-
-        <Form onSubmit={handleSubmit}>
-          <Form.Group controlId="formFile">
-            <Form.Label>Upload Captcha Image</Form.Label>
-            {/* <Form.Control type="file" onChange={handleFileSelect} /> */}
-            <Upload >
-              <Button icon={<UploadOutlined />}>Click to Upload</Button>
-            </Upload>
-          </Form.Group>
-
-          <Button
-  variant="primary"
-  type="submit"
-  disabled={!selectedFile}
-  className="btn-lg btn-block"
->
-  Submit
-</Button>
-        </Form>
-
-        {captchaText && (
-          <div className="mt-4">
-            <h4>Captcha Text:</h4>
-            <p>{captchaText}</p>
-          </div>
-        )}
-      </Container>
-
-      <footer className="mt-4 bg-light">
-        <Container>
-          <p>Copyright © My Website</p>
-        </Container>
-      </footer>
-    </>
+    <div className="App">
+    <MenuComponent/>
+    </div>
   );
 }
 

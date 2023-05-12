@@ -56,7 +56,7 @@ const FileUploader = () => {
   );
   return (
     <div style={{ display: 'flex', justifyContent: 'center', height: '100%' }}>
-        <Card style={{ width: 300 }}>
+        <Card style={{ flex: 1 }}>
         <Upload
           action={url}
           listType='picture'
@@ -68,7 +68,7 @@ const FileUploader = () => {
           {fileList.length >= 4 ? null : uploadButton}
         </Upload>
       </Card>
-      <Card style={{ width: 300, marginRight: 16 }}>
+      <Card style={{ flex: 1, marginRight: 16 }}>
         <List
           header={<div>Model`s prediction</div>}
           bordered

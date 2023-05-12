@@ -1,16 +1,55 @@
-import { Breadcrumb, Layout, Menu as Menu, theme, Button } from 'antd';
+import { Breadcrumb, Layout, Menu, theme, Button, Space, message, Dropdown } from 'antd';
 import { Container, Navbar, Form, Image } from "react-bootstrap";
 import axios from "axios";
 import React, { useState } from "react";
-import { Upload } from 'antd';
+import { Upload, MenuProps } from 'antd';
+import { DownOutlined, UserOutlined } from '@ant-design/icons';
+
 import { UploadOutlined } from '@ant-design/icons';
 import FileUploader from './FileUploader';
 
 const { Header, Content, Footer } = Layout;
 const MenuComponent = () => {
     const [captchaText, setCaptchaText] = useState("");
-    const [selectedFile, setSelectedFile] = useState();
+    const [selectedFile, setSelectedFile] = useState("");
   
+    const handleMenuClick = (e) => {
+      message.info('Click on menu item.');
+      console.log('click', e);
+    };
+
+    const items = [
+      {
+        label: '1st menu item',
+        key: '1',
+        icon: <UserOutlined />,
+      },
+      {
+        label: '2nd menu item',
+        key: '2',
+        icon: <UserOutlined />,
+      },
+      {
+        label: '3rd menu item',
+        key: '3',
+        icon: <UserOutlined />,
+        danger: true,
+      },
+      {
+        label: '4rd menu item',
+        key: '4',
+        icon: <UserOutlined />,
+        danger: true,
+        disabled: true,
+      },
+    ];
+    
+    const menuProps = {
+      items,
+      onClick: handleMenuClick,
+    };
+
+
     const props = {
       beforeUpload: file => {
         handleFileSelect(file);
@@ -49,7 +88,7 @@ const MenuComponent = () => {
     <Layout className="layout" style={{ height:"100vh" }}>
       <Header>
         <div className="logo" />
-        <Menu
+        {/* <Menu
           theme="dark"
           mode="horizontal"
           defaultSelectedKeys={['2']}
@@ -60,7 +99,15 @@ const MenuComponent = () => {
               label: `nav ${key}`,
             };
           })}
-        />
+        /> */}
+        <Dropdown menu={menuProps}>
+      <Button>
+        <Space>
+          Button
+          <DownOutlined />
+        </Space>
+      </Button>
+    </Dropdown>
       </Header>
       <Content
         style={{
@@ -87,8 +134,8 @@ const MenuComponent = () => {
           }}
         >
             <Form onSubmit={handleSubmit} style={{ height: '100%'}}>
-          <Form.Group controlId="formFile" style={{ height: '50%'}}>
-            <Form.Label>Upload Captcha Image</Form.Label>
+          <Form.Group controlId="formFile" >
+            <Form.Label style={{fontSize: '2rem', display: 'flex', justifyContent: 'center', padding: '30px 30px 30px 30px'}}>UPLOAD CAPTCHA IMAGE</Form.Label>
             <FileUploader></FileUploader>
           </Form.Group>
           </Form>

@@ -47,7 +47,7 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <div style={{ height: '100vh'}}>
     <MenuComponent/>
     </div>
   );

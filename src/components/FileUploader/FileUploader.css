@@ -1,0 +1,36 @@
+.file-uploader {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+.file-uploader-left-card {
+  flex: 1;
+}
+.file-uploader-right-card {
+  flex: 1;
+  margin-right: 16;
+}
+.file-uploader-right-card-list-header {
+  height: 36px;
+  font-size: 20px;
+}
+.file-uploader-right-card-list-item {
+  height: 74px;
+}
+.file-uploader-upload-container {
+  display: flex;
+  justify-content: center;
+  height: 36px;
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
+.file-uploader-upload-container-inner {
+  display: flex;
+  align-items: center;
+  font-size: 20px;
+}
+
+.file-uploader-upload-btn-title {
+  margin-left: 5px;
+}

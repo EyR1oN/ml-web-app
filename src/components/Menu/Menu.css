@@ -1,0 +1,45 @@
+.menu-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.menu-title {
+  font-size: 2rem;
+  color: white;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.menu-dropdown-choose-model {
+  position: absolute;
+  right: 10%;
+}
+.menu-content {
+  padding: 0 50px;
+
+  overflow: auto;
+}
+.menu-breadcrumbs {
+  margin: 16px 0;
+}
+.menu-content-container {
+  background: white;
+  min-height: 280px;
+  padding: 24px;
+}
+.menu-content-container-title {
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  padding: 30px 30px 30px 30px;
+}
+.menu-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+}
+.menu-footer-info {
+  font-size: 25px;
+}

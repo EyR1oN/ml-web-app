@@ -1,16 +1,12 @@
 import {
   Breadcrumb,
   Layout,
-  Menu,
-  theme,
   Button,
   Space,
-  message,
   Dropdown,
 } from "antd";
-import axios from "axios";
 import React, { useState } from "react";
-import { Upload, MenuProps, Tooltip } from "antd";
+import { Tooltip } from "antd";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
 
 import { InfoCircleOutlined } from "@ant-design/icons";
@@ -73,9 +69,6 @@ const MenuComponent = () => {
       </Header>
       <Content className="menu-content">
         <Breadcrumb className="menu-breadcrumbs">
-          {/* <Breadcrumb.Item>Home</Breadcrumb.Item>
-          <Breadcrumb.Item>List</Breadcrumb.Item>
-          <Breadcrumb.Item>App</Breadcrumb.Item> */}
         </Breadcrumb>
         <div className="menu-content-container">
           <div className="menu-content-container-title">

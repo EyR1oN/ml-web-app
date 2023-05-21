@@ -49,7 +49,6 @@ const FileUploader = ({ url, disabled }) => {
 
     const uploadedFile = fileList.find((file) => file.uid === response.uid);
 
-    console.log(uploadedFile);
     if (uploadedFile) {
       uploadedFile.status = "done";
       setFileList([...fileList]);

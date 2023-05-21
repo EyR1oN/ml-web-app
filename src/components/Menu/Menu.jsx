@@ -1,10 +1,4 @@
-import {
-  Breadcrumb,
-  Layout,
-  Button,
-  Space,
-  Dropdown,
-} from "antd";
+import { Breadcrumb, Layout, Button, Space, Dropdown } from "antd";
 import React, { useState } from "react";
 import { Tooltip } from "antd";
 import { DownOutlined, UserOutlined } from "@ant-design/icons";
@@ -15,33 +9,43 @@ import Description from "../Description/Description";
 import { info } from "../../constants/constants";
 import "./Menu.css";
 
+const urls = {
+  1: "https://ml-web-api.herokuapp.com/lstm1",
+  2: "https://ml-web-api.herokuapp.com/lstm2",
+  3: "https://ml-web-api.herokuapp.com/bilstm1",
+  4: "https://ml-web-api.herokuapp.com/bilstm2",
+};
+
 const { Header, Content, Footer } = Layout;
 const MenuComponent = () => {
-  const [chosenModel, setChosenModel] = useState();
+  const [chosenModel, setChosenModel] = useState({
+    name: undefined,
+    url: undefined,
+  });
 
   const handleMenuClick = (e) => {
-    setChosenModel(items.find((item) => item.key === e.key)?.label);
-    console.log("click", e);
+    const item = items.find((item) => item.key === e?.key);
+    setChosenModel({ name: item.label, url: urls[item?.key] });
   };
 
   const items = [
     {
-      label: "1st menu item",
+      label: "LSTM 1",
       key: "1",
       icon: <UserOutlined />,
     },
     {
-      label: "2nd menu item",
+      label: "LSTM 2",
       key: "2",
       icon: <UserOutlined />,
     },
     {
-      label: "3rd menu item",
+      label: "BILSTM 1",
       key: "3",
       icon: <UserOutlined />,
     },
     {
-      label: "4rd menu item",
+      label: "BILSTM 2",
       key: "4",
       icon: <UserOutlined />,
     },
@@ -60,7 +64,7 @@ const MenuComponent = () => {
           <Dropdown menu={menuProps}>
             <Button>
               <Space>
-                {chosenModel ?? <>Choose Model</>}
+                {chosenModel?.name ?? <>Choose Model</>}
                 <DownOutlined />
               </Space>
             </Button>
@@ -68,13 +72,15 @@ const MenuComponent = () => {
         </div>
       </Header>
       <Content className="menu-content">
-        <Breadcrumb className="menu-breadcrumbs">
-        </Breadcrumb>
+        <Breadcrumb className="menu-breadcrumbs"></Breadcrumb>
         <div className="menu-content-container">
           <div className="menu-content-container-title">
             Upload Captcha Image
           </div>
-          <FileUploader></FileUploader>
+          <FileUploader
+            url={chosenModel?.url}
+            disabled={!chosenModel?.name}
+          ></FileUploader>
           <Description />
         </div>
       </Content>

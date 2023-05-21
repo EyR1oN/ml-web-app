@@ -1,6 +1,7 @@
 import { PlusOutlined } from "@ant-design/icons";
 import { Modal, Upload, Card, List, message } from "antd";
 import { useState } from "react";
+import axios from "axios";
 import "./FileUploader.css";
 
 const getBase64 = (file) =>
@@ -11,21 +12,12 @@ const getBase64 = (file) =>
     reader.onerror = (error) => reject(error);
   });
 
-const FileUploader = () => {
-  const url = "/api/captcha";
+const FileUploader = ({ url, disabled }) => {
   const [resultList, setResultList] = useState([]);
-
   const [previewOpen, setPreviewOpen] = useState(false);
   const [previewImage, setPreviewImage] = useState("");
   const [previewTitle, setPreviewTitle] = useState("");
-  const [fileList, setFileList] = useState([
-    {
-      uid: "-1",
-      name: "image.png",
-      status: "done",
-      url: "https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png",
-    },
-  ]);
+  const [fileList, setFileList] = useState([]);
 
   const handleCancel = () => setPreviewOpen(false);
   const handlePreview = async (file) => {
@@ -44,24 +36,48 @@ const FileUploader = () => {
   };
 
   const handleRemove = (file) => {
-    console.log(file);
     setResultList(resultList.filter((i) => i.uid !== file.uid));
   };
 
   const handleError = (error) => {
-    message.error("Cannot process file, refresh page.");
-    console.log(error);
+    message.error(error);
   };
 
   const handleSuccess = (response) => {
-    setResultList((prev) => [...prev, response.data]);
-    console.log(response.data);
+    const { prediction } = response;
+    setResultList((prev) => [...prev, { prediction }]);
+
+    const uploadedFile = fileList.find((file) => file.uid === response.uid);
+
+    console.log(uploadedFile);
+    if (uploadedFile) {
+      uploadedFile.status = "done";
+      setFileList([...fileList]);
+    }
+  };
+
+  const handleBeforeUpload = (file) => {
+    const formData = new FormData();
+    formData.append("file", file.file);
+    formData.append("uid", file.file.uid);
+
+    axios
+      .post(url, formData)
+      .then((response) => {
+        handleSuccess(response.data);
+      })
+      .catch((error) => {
+        handleError(error);
+      });
+
+    return false;
   };
 
   return (
     <div className="file-uploader">
       <Card className="file-uploader-left-card">
         <Upload
+          customRequest={handleBeforeUpload}
           action={url}
           listType="picture"
           fileList={fileList}
@@ -69,6 +85,7 @@ const FileUploader = () => {
           onChange={handleChange}
           onSuccess={handleSuccess}
           onError={handleError}
+          disabled={disabled}
           onRemove={handleRemove}
         >
           {

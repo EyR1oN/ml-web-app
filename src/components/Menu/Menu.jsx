@@ -6,15 +6,8 @@ import { DownOutlined, UserOutlined } from "@ant-design/icons";
 import { InfoCircleOutlined } from "@ant-design/icons";
 import FileUploader from "../FileUploader/FileUploader";
 import Description from "../Description/Description";
-import { info } from "../../constants/constants";
+import { info, urls } from "../../constants/constants";
 import "./Menu.css";
-
-const urls = {
-  1: "https://ml-web-api.herokuapp.com/lstm1",
-  2: "https://ml-web-api.herokuapp.com/lstm2",
-  3: "https://ml-web-api.herokuapp.com/bilstm1",
-  4: "https://ml-web-api.herokuapp.com/bilstm2",
-};
 
 const { Header, Content, Footer } = Layout;
 const MenuComponent = () => {

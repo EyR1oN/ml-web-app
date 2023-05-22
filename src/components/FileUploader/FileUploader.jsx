@@ -44,8 +44,8 @@ const FileUploader = ({ url, disabled }) => {
   };
 
   const handleSuccess = (response) => {
-    const { prediction } = response;
-    setResultList((prev) => [...prev, { prediction }]);
+    const { prediction, uid } = response;
+    setResultList((prev) => [...prev, { prediction, uid }]);
 
     const uploadedFile = fileList.find((file) => file.uid === response.uid);
 

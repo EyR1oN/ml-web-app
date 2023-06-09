@@ -74,7 +74,7 @@ const MenuComponent = () => {
             url={chosenModel?.url}
             disabled={!chosenModel?.name}
           ></FileUploader>
-          <Description />
+          {/* <Description /> */}
         </div>
       </Content>
       <Footer className="menu-footer">

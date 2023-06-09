@@ -44,8 +44,8 @@ const FileUploader = ({ url, disabled }) => {
   };
 
   const handleSuccess = (response) => {
-    const { prediction, uid } = response;
-    setResultList((prev) => [...prev, { prediction, uid }]);
+    const { prediction, uid, model } = response;
+    setResultList((prev) => [...prev, { prediction, uid, model }]);
 
     const uploadedFile = fileList.find((file) => file.uid === response.uid);
 
@@ -109,7 +109,7 @@ const FileUploader = ({ url, disabled }) => {
           dataSource={resultList}
           renderItem={(item) => (
             <List.Item className="file-uploader-right-card-list-item">
-              {item.prediction}
+              {`${item.prediction} (${item.model})`}
             </List.Item>
           )}
         />

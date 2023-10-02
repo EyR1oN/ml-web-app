@@ -4,8 +4,8 @@ export const description =
 export const info = "These models are cool";
 
 export const urls = {
-  1: "https://ml-web-api.herokuapp.com/lstm1",
-  2: "https://ml-web-api.herokuapp.com/lstm2",
-  3: "https://ml-web-api.herokuapp.com/bilstm1",
-  4: "https://ml-web-api.herokuapp.com/bilstm2",
+  1: "https://ml-web-api-114dadf2bde1.herokuapp.com/lstm1",
+  2: "https://ml-web-api-114dadf2bde1.herokuapp.com/lstm2",
+  3: "https://ml-web-api-114dadf2bde1.herokuapp.com/bilstm1",
+  4: "https://ml-web-api-114dadf2bde1.herokuapp.com/bilstm2",
 };
